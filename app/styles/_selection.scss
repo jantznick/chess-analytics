@@ -1,0 +1,21 @@
+.gameChoiceWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:nth-of-type(even) {
+        background: #d0d0d0;
+    }
+
+    &:nth-of-type(odd) {
+        background: #929292;
+    }
+}
+
+
+

@@ -1,11 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import Chessboard from 'chessboardjsx';
 
 import {getPlayerData} from '../actions';
 
 import {getDate} from '../utils/time';
+
 import Board from './Board';
+import GameViewer from './GameViewer';
+import SelectionTabs from './Selection';
+import Analysis from './Analysis';
 
 class App extends React.Component {
 
@@ -13,27 +16,37 @@ class App extends React.Component {
         this.props.getPlayerData();
     }
 
-    handleClick = (event) => {
-        console.log(event);
-    }
-
 	render() {
 
 		return (
             <React.Fragment>
-                <h1>Chess Analytics App</h1>
-                <button onClick={() => this.handleClick}>CLICK ME!</button>
-                <Board />
+                <div id="header">
+                    <h1>Chess.com Game Analysis</h1>
+                </div>
+
+                <div id="left">
+                    <SelectionTabs/>
+                </div>
+
+                <div id="center">
+                    <Board />
+                </div>
+
+                <div id="right">
+                    <GameViewer />
+                    <Analysis />
+                </div>
             </React.Fragment>
 		)
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({game, games, playerData, playerStats}) => {
 	return {
-        game: state.game,
-        games: state.games,
-        // joinedDate: getDate(state.game.joined)
+        game,
+        games,
+        playerData,
+        playerStats
     }
 };
 

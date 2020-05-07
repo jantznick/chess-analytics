@@ -1,0 +1,16 @@
+@mixin flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@import 'analysis';
+@import 'board';
+@import 'gameviewer';
+@import 'page';
+@import 'panel';
+@import 'selection';
+@import 'user';
+
+

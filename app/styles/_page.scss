@@ -1,0 +1,41 @@
+body {
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap');
+
+    background: #e1e6e2;
+    margin: 0;
+
+    #root {
+        @include flex;
+        align-items: flex-start;
+    }
+
+    #header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1em;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    #left {
+        @include flex;
+
+        width: 25%;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    #center {
+        @include flex;
+
+        width: 50%;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    #right {
+        @include flex;
+
+        width: 25%;
+        font-family: 'Raleway', sans-serif;
+        justify-content: flex-start;
+    }
+}
