@@ -21,21 +21,33 @@ export const getPlayerData = (userName) => {
 export const getGameData = (userName) => {
 	const url = `https://api.chess.com/pub/player/${userName}/games/archives`
 	const games = [];
-	fetch(url)
-		.then(response => response.json())
-		.then(json => {
-			json.archives.map(url => {
-				const arch = getArchive(url)
-				arch.map(x => games.push(x))
-			})
-		})
+	const promises = [];
 	return dispatch => {
-		dispatch(selectGames(games))
+		fetch(url)
+			.then(response => response.json())
+			.then(json => {
+				json.archives.map(url => {
+					const arch = getArchive(url)
+					promises.push(arch)
+				})
+				Promise.all(promises)
+					.then((value) => {
+						value.map(array1 => {
+							array1.map(game => {
+								games.push(game)
+							})
+						})
+						return dispatch(selectGames(games))
+					})
+			})
 	}
 };
 
 export const getArchive = (url) => {
-	return fetch(url)
+	return fetch(url, {
+		mode: 'cors'
+	})
 		.then(response => response.json())
 		.then(json => json.games)
 }
+

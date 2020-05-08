@@ -57,19 +57,21 @@ class SelectionTabs extends React.Component {
                 {this.props.player ?
                     <div className="selectionTabs-playerHeader">
                         <h3>Recent Games for {this.props.player}:</h3>
+                        {
+                            this.props.games.map((game,i) => {
+                                while (i < 10) {
+                                    return (
+                                        <div className="gameChoiceWrapper" key={i}>
+                                            <p className="gameChoice">{game.white.username} vs {game.black.username} </p>
+                                            <span className="material-icons">navigate_next</span>
+                                        </div>
+                                    )
+                                }
+                            })
+                        }
                     </div>
                     :
                     this.renderPlayerSearch()
-                }
-                {this.props.player &&
-                    this.props.games.map((game,i) => {
-                        return (
-                            <div className="gameChoiceWrapper" key={i}>
-                                <p className="gameChoice">{game.white.username} vs {game.black.username} </p>
-                                <span className="material-icons">navigate_next</span>
-                            </div>
-                        )
-                    })
                 }
                 {this.props.player &&
                     <button onClick={this.resetPlayer} className="resetPlayerButton">Reset Player</button>
