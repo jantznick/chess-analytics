@@ -1,55 +1,22 @@
 import React from 'react';
-import {connect} from 'react-redux'
-
-import {getPlayerData} from '../actions';
-
-import {getDate} from '../utils/time';
-
-import Board from './Board';
-import GameViewer from './GameViewer';
-import SelectionTabs from './Selection';
-import Analysis from './Analysis';
+import {Link} from 'react-router-dom';
 
 class App extends React.Component {
-
-    componentDidMount() {
-        this.props.getPlayerData();
-    }
 
 	render() {
 
 		return (
             <React.Fragment>
                 <div id="header">
-                    <h1>Chess.com Game Analysis</h1>
+                    <h1>Pavlov Chess</h1>
                 </div>
-
-                <div id="left">
-                    <SelectionTabs/>
-                </div>
-
-                <div id="center">
-                    <Board />
-                </div>
-
-                <div id="right">
-                    <GameViewer />
-                    <Analysis />
+                <div className="links">
+                    <Link to="/learn">Chess.com Analytics</Link>
+                    <Link to="/pavlov">Pavlov Trainer</Link>
                 </div>
             </React.Fragment>
 		)
 	}
 }
 
-const mapStateToProps = ({game, games, playerData, playerStats}) => {
-	return {
-        game,
-        games,
-        playerData,
-        playerStats
-    }
-};
-
-const mapDispatchToProps = {getPlayerData}
-
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default App

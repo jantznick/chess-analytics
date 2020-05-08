@@ -1,0 +1,9 @@
+.links {
+    @include flex;
+
+    text-align: center;
+
+    a {
+        width: 100%;
+    }
+}

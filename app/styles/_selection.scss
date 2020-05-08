@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
+    transition-duration: 350ms;
 
     &:hover {
         cursor: pointer;
@@ -10,12 +11,60 @@
 
     &:nth-of-type(even) {
         background: #d0d0d0;
+
+        &:hover {
+            background: #adadad;
+        }
     }
 
     &:nth-of-type(odd) {
         background: #929292;
+
+        &:hover {
+            background: #615f5f;
+        }
     }
 }
 
+#selectionTabs {
+    flex-grow: 1;
 
+    form {
+        display: flex;
+        flex-wrap: wrap;
+
+        h3 {
+            width: 100%;
+        }
+    }
+
+    #playerSearch {
+        flex-grow: 1;
+        padding: 0.5em;
+        font-family: 'Raleway';
+        background: unset;
+        border: 1px solid #929292;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: unset;
+        border: 1px solid #929292;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .resetPlayerButton {
+        @include flex;
+
+        padding: 1em;
+        width: 100%;
+        margin-top: 1em;
+    }
+
+}
 

@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+@import 'pavlov';
 @import 'analysis';
 @import 'board';
 @import 'gameviewer';
