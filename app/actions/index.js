@@ -9,6 +9,11 @@ export const selectGames = data => ({
 	payload: data
 });
 
+export const selectGame = data => ({
+	type: 'SELECT_GAME',
+	payload: data
+})
+
 export const getPlayerData = (userName) => {
 	const url = `https://api.chess.com/pub/player/${userName}`;
 	return dispatch => {

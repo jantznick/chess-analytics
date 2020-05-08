@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import {
     selectPlayer,
     getPlayerData,
-    getGameData
+    getGameData,
+    selectGame
 } from '../actions';
 
 class SelectionTabs extends React.Component {
@@ -61,7 +62,7 @@ class SelectionTabs extends React.Component {
                             this.props.games.map((game,i) => {
                                 while (i < 10) {
                                     return (
-                                        <div className="gameChoiceWrapper" key={i}>
+                                        <div className="gameChoiceWrapper" onClick={() => {this.props.selectGame(game)}} key={i}>
                                             <p className="gameChoice">{game.white.username} vs {game.black.username} </p>
                                             <span className="material-icons">navigate_next</span>
                                         </div>
@@ -89,7 +90,7 @@ const mapStateToProps = (state) => {
     })
 };
 
-const mapDispatchToProps = {getGameData, getPlayerData, selectPlayer}
+const mapDispatchToProps = {selectGame, getGameData, getPlayerData, selectPlayer}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectionTabs)
 

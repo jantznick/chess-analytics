@@ -26,7 +26,7 @@ class Board extends React.Component {
                         </div>
                     }
                     <Chessboard
-                        position={this.props.fen}
+                        position='start'
                         calcWidth={this.calcWidth}
                         roughSquare={roughSquare}
                     />
