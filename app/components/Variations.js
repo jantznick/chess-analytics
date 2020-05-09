@@ -5,6 +5,14 @@ import {selectContinuation} from '../actions'
 
 class Variations extends React.Component {
 
+    handleContinuationSet = (cont) => {
+        if (this.props.opening.continuation) {
+            console.log("already selected");
+        } else {
+            this.props.selectContinuation(cont)
+        }
+    }
+
     render() {
 
         return (
@@ -13,7 +21,7 @@ class Variations extends React.Component {
                 {this.props.opening.continuations &&
                     this.props.opening.continuations.map((cont,i) => {
                         return (
-                            <div onClick={() => this.props.selectContinuation(cont)} className="variationSelectionWrapper" key={i}>
+                            <div onClick={() => this.handleContinuationSet(cont)} className="variationSelectionWrapper" key={i}>
                                 <p>{cont.name}</p>
                             </div>
                         )

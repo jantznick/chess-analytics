@@ -14,8 +14,7 @@ const game = (state = initialState, action) => {
 				type: 'opening',
 				moveNumber: 0,
 				fen: 'start',
-				moves: action.payload.moves.split(' '),
-				reset: true
+				moves: action.payload.moves.split(' ')
 			}
 		case 'MAKE_MOVE':
 			return {
@@ -26,7 +25,7 @@ const game = (state = initialState, action) => {
 		case 'SELECT_CONT':
 			return {
 				...state,
-				moves: state.moves.push(action.payload.moves.split(' '))
+				moves: state.moves.concat(action.payload.moves.split(' '))
 			}
 		default:
 			return state
