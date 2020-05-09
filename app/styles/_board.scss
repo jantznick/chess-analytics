@@ -11,6 +11,10 @@
         span {
             font-size: 5em;
             margin: 0 0.75em;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 

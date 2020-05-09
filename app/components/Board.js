@@ -1,10 +1,20 @@
 import React from 'react';
 import Chessboard from 'chessboardjsx';
 import {connect} from 'react-redux'
+import Chess from 'chess.js'
 
 import { roughSquare } from '../utils/customRough.js';
 
 class Board extends React.Component {
+
+    state = {
+        fen: 'start',
+        index: 0
+    }
+
+    componentDidMount() {
+        this.game = new Chess();
+    }
 
     calcWidth = ({screenWidth, screenHeight}) => {
         if (typeof window !== 'undefined' && window.document.getElementById('board')) {
@@ -12,6 +22,25 @@ class Board extends React.Component {
         } else {
             return screenWidth*0.425
         }
+    }
+
+    nextMove = () => {
+        console.log(`Moving piece: ${this.props.game.moves[this.state.index]}`)
+        this.game.move(this.props.game.moves[this.state.index])
+        this.setState({
+            fen: this.game.fen(),
+            index: this.state.index + 1
+        })
+    }
+
+    previousMove = () => {
+        console.log(this.game.fen())
+        this.game.undo()
+        console.log(this.game.fen())
+        this.setState({
+            fen: this.game.fen(),
+            index: this.state.index - 1
+        })
     }
 
     render() {
@@ -26,14 +55,14 @@ class Board extends React.Component {
                         </div>
                     }
                     <Chessboard
-                        position='start'
+                        position={this.state.fen}
                         calcWidth={this.calcWidth}
                         roughSquare={roughSquare}
                     />
                 </div>
                 <div id="boardControls">
-                    <span className="material-icons">navigate_before</span>
-                    <span className="material-icons">navigate_next</span>
+                    <span className="material-icons" onClick={this.previousMove}>navigate_before</span>
+                    <span className="material-icons" onClick={this.nextMove}>navigate_next</span>
                 </div>
             </div>
         )
@@ -45,8 +74,10 @@ Board.defaultProps = {
     showProbabilityBar: true
 }
 
-const mapStateToProps = ({game: pgn}) => {
-	return pgn
+const mapStateToProps = ({game}) => {
+	return ({
+        game
+    })
 };
 
 export default connect(mapStateToProps)(Board)
