@@ -1,7 +1,7 @@
 const openings = [
 	{
 		name: 'Ruy Lopez',
-		moves: 'e4 e5 Nf3 Nf6 Bb5',
+		moves: 'e4 e5 Nf3 Nc6 Bb5',
 		continuations: [
 			{
 				name: 'Closed Defense',

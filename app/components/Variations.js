@@ -13,7 +13,7 @@ class Variations extends React.Component {
                 {this.props.opening.continuations &&
                     this.props.opening.continuations.map((cont,i) => {
                         return (
-                            <div onClick={() => this.props.selectContinuation(cont.name)} className="variationSelectionWrapper" key={i}>
+                            <div onClick={() => this.props.selectContinuation(cont)} className="variationSelectionWrapper" key={i}>
                                 <p>{cont.name}</p>
                             </div>
                         )

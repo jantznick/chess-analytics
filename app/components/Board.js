@@ -5,16 +5,9 @@ import Chess from 'chess.js'
 
 import { roughSquare } from '../utils/customRough.js';
 
+import {makeMove} from '../actions';
+
 class Board extends React.Component {
-
-    state = {
-        fen: 'start',
-        index: 0
-    }
-
-    componentDidMount() {
-        this.game = new Chess();
-    }
 
     calcWidth = ({screenWidth, screenHeight}) => {
         if (typeof window !== 'undefined' && window.document.getElementById('board')) {
@@ -25,21 +18,22 @@ class Board extends React.Component {
     }
 
     nextMove = () => {
-        console.log(`Moving piece: ${this.props.game.moves[this.state.index]}`)
-        this.game.move(this.props.game.moves[this.state.index])
-        this.setState({
+        // Hacky fix to reset 'this.game' from chess.js if user selects new opening mid play
+        if (this.props.game.moveNumber == 0) {
+            this.game = new Chess();
+        }
+        this.game.move(this.props.game.moves[this.props.game.moveNumber])
+        this.props.makeMove({
             fen: this.game.fen(),
-            index: this.state.index + 1
+            moveNumber: this.props.game.moveNumber + 1
         })
     }
 
     previousMove = () => {
-        console.log(this.game.fen())
-        this.game.undo()
-        console.log(this.game.fen())
-        this.setState({
+        this.game.undo();
+        this.props.makeMove({
             fen: this.game.fen(),
-            index: this.state.index - 1
+            moveNumber: this.props.game.moveNumber - 1
         })
     }
 
@@ -55,9 +49,11 @@ class Board extends React.Component {
                         </div>
                     }
                     <Chessboard
-                        position={this.state.fen}
+                        position={this.props.game.fen}
                         calcWidth={this.calcWidth}
                         roughSquare={roughSquare}
+                        transitionDuration={200}
+                        undo={true}
                     />
                 </div>
                 <div id="boardControls">
@@ -80,4 +76,6 @@ const mapStateToProps = ({game}) => {
     })
 };
 
-export default connect(mapStateToProps)(Board)
+const mapDispatchToProps = {makeMove};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board)

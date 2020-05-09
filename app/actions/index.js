@@ -1,4 +1,9 @@
 
+export const makeMove = data => ({
+	type: 'MAKE_MOVE',
+	payload: data
+})
+
 export const selectOpening = data => ({
 	type: 'SELECT_OPENING',
 	payload: data

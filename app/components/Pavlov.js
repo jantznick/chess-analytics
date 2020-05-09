@@ -10,6 +10,10 @@ import Variations from './Variations';
 
 class Pavlov extends React.Component {
 
+    openingSelected = (opening) => {
+        this.props.selectOpening(opening)
+    }
+
 	render() {
 
 		return (
@@ -24,7 +28,7 @@ class Pavlov extends React.Component {
                         {openings.map((opening,i) => {
                             while (i < 10) {
                                 return (
-                                    <div className="openingSelectionWrapper" key={i} onClick={() => this.props.selectOpening(opening)}>
+                                    <div className="openingSelectionWrapper" key={i} onClick={() => this.openingSelected(opening)}>
                                         <p>{opening.name}</p>
                                         <span className="material-icons">navigate_next</span>
                                     </div>

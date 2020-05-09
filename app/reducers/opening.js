@@ -7,7 +7,7 @@ const opening = (state = initialState, action) => {
 		case 'SELECT_CONT':
 			return {
 				...state,
-				continuation: action.payload
+				continuation: action.payload.name
 			}
 		default:
 			return state
