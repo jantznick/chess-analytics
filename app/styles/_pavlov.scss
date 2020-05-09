@@ -7,3 +7,40 @@
         width: 100%;
     }
 }
+
+#openingSelectionTabs {
+    @include flex;
+
+    h3 {
+        width:100%;
+    }
+
+    .openingSelectionWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px;
+        transition-duration: 350ms;
+        width:100%;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:nth-of-type(even) {
+            background: #d0d0d0;
+
+            &:hover {
+                background: #adadad;
+            }
+        }
+
+        &:nth-of-type(odd) {
+            background: #929292;
+
+            &:hover {
+                background: #615f5f;
+            }
+        }
+    }
+}

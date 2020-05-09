@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
+import {selectOpening} from '../actions';
+
 import Board from './Board';
 import openings from '../utils/openings';
 import Line from './Line';
@@ -17,12 +19,19 @@ class Pavlov extends React.Component {
                 </div>
 
                 <div id="left">
-                    <h3>Select an Opening:</h3>
-                    {openings.map((opening,i) => {
-                        while (i < 10) {
-                            return <p key={i}>{opening.name}</p>
-                        }
-                    })}
+                    <div id="openingSelectionTabs">
+                        <h3>Select an Opening:</h3>
+                        {openings.map((opening,i) => {
+                            while (i < 10) {
+                                return (
+                                    <div className="openingSelectionWrapper" key={i} onClick={() => this.props.selectOpening(opening)}>
+                                        <p>{opening.name}</p>
+                                        <span className="material-icons">navigate_next</span>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
 
                 <div id="center">
@@ -49,4 +58,6 @@ const mapStateToProps = ({game, games, playerData, playerStats}) => {
     }
 };
 
-export default connect(mapStateToProps)(Pavlov)
+const mapDispatchToProps = {selectOpening};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Pavlov)
