@@ -4,6 +4,11 @@ export const selectOpening = data => ({
 	payload: data
 })
 
+export const selectContinuation = data => ({
+	type: 'SELECT_CONT',
+	payload: data
+})
+
 export const selectPlayer = data => ({
 	type: 'SELECT_PLAYER',
 	payload: data

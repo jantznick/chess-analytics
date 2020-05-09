@@ -11,7 +11,7 @@ class Line extends React.Component {
             <div id="line">
                 <h1>Line Section</h1>
                 {this.props.opening &&
-                    <p>{this.props.opening.name}</p>
+                    <p>{this.props.opening.name} - {this.props.opening.continuation ? this.props.opening.continuation : 'Select a Continuation!'}</p>
                 }
             </div>
         )
