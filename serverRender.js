@@ -5,9 +5,13 @@ import { renderToString } from 'react-dom/server';
 
 import Routes from './app/routes';
 
+import api from './server/routes/api';
+
 const app = express();
 
 app.use(express.static('public'));
+
+app.use("/api", api);
 
 app.get('*', (req,res) => {
     const context = {};
