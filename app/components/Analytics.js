@@ -15,35 +15,35 @@ class Analytics extends React.Component {
 	render() {
 
 		return (
-            <React.Fragment>
-                <div id="header">
-                    <h1>Chess.com Game Analysis</h1>
-                </div>
+			<React.Fragment>
+				<div id="header">
+					<h1>Chess.com Game Analysis</h1>
+				</div>
 
-                <div id="left">
-                    <SelectionTabs/>
-                </div>
+				<div id="left">
+					<SelectionTabs/>
+				</div>
 
-                <div id="center">
-                    <Board />
-                </div>
+				<div id="center">
+					<Board />
+				</div>
 
-                <div id="right">
-                    <GameViewer />
-                    <Analysis />
-                </div>
-            </React.Fragment>
+				<div id="right">
+					<GameViewer />
+					<Analysis />
+				</div>
+			</React.Fragment>
 		)
 	}
 }
 
 const mapStateToProps = ({game, games, playerData, playerStats}) => {
 	return {
-        game,
-        games,
-        playerData,
-        playerStats
-    }
+		game,
+		games,
+		playerData,
+		playerStats
+	}
 };
 
 const mapDispatchToProps = {getPlayerData}

@@ -5,23 +5,23 @@ import {selectOpening} from '../actions';
 
 class Line extends React.Component {
 
-    render() {
+	render() {
 
-        return (
-            <div id="line">
-                <h1>Line Section</h1>
-                {this.props.opening.name &&
-                    <p>{this.props.opening.name} - {this.props.opening.continuation ? this.props.opening.continuation : 'Select a Continuation!'}</p>
-                }
-            </div>
-        )
-    }
+		return (
+			<div id="line">
+				<h1>Line Section</h1>
+				{this.props.opening.name &&
+					<p>{this.props.opening.name} - {this.props.opening.continuation ? this.props.opening.continuation : 'Select a Continuation!'}</p>
+				}
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = state => {
-    return ({
-        opening: state.opening
-    })
+	return ({
+		opening: state.opening
+	})
 }
 
 export default connect(mapStateToProps)(Line);

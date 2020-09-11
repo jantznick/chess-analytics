@@ -9,17 +9,17 @@ import playerData from './playerData';
 import playerStats from './playerStats';
 
 const rootReducer = combineReducers({
-    game,
-    games,
-    opening,
-    openings,
-    playerData,
-    playerStats
+	game,
+	games,
+	opening,
+	openings,
+	playerData,
+	playerStats
 });
 
 const store = createStore(
-    rootReducer,
-    applyMiddleware(thunk)
+	rootReducer,
+	applyMiddleware(thunk)
 );
 
 export default store;

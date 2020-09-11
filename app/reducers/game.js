@@ -1,4 +1,7 @@
-const initialState = {}
+const initialState = {
+	fen: "start",
+	moveNumber: 0
+}
 
 const game = (state = initialState, action) => {
 	switch (action.type) {

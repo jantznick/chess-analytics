@@ -6,7 +6,7 @@ import {selectContinuation} from '../actions'
 class Variations extends React.Component {
 
     handleContinuationSet = (cont) => {
-        if (this.props.opening.continuation) {
+        if (this.props.opening.continuation === cont.name) {
             console.log("already selected");
         } else {
             this.props.selectContinuation(cont)
