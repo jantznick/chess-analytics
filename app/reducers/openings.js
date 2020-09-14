@@ -1,6 +1,6 @@
 const initialState = []
 
-const openings = (state = initialState, action) => {
+const openings = (state = initialState.opening, action) => {
 	switch (action.type) {
 		case 'SELECT_OPENINGS':
 			return action.payload
@@ -9,4 +9,16 @@ const openings = (state = initialState, action) => {
 	}
 }
 
-export default openings
+const closings = (state = initialState.closing, action) => {
+	switch (action.type) {
+		case 'SELECT_CLOSING':
+			return action.payload
+		default:
+			return state
+	}
+}
+
+export default {
+	openings,
+	closings
+}

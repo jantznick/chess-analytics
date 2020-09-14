@@ -21,6 +21,12 @@ const game = (state = initialState, action) => {
 				fen: 'start',
 				targets: action.payload.moves.split(' ')
 			}
+		case 'SELECT_CLOSING':
+			return {
+				type: 'closing',
+				moveNumber: 0,
+				fen: action.payload.fen
+			}
 		case 'MAKE_MOVE':
 			let {targets, sources} = state;
 			action.payload.moveTarget && targets.push(action.payload.moveTarget);
@@ -34,7 +40,7 @@ const game = (state = initialState, action) => {
 		case 'SELECT_CONT':
 			return {
 				...state,
-				moves: state.moves.concat(action.payload.moves.split(' '))
+				targets: state.targets.concat(action.payload.moves.split(' '))
 			}
 		default:
 			return state

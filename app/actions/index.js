@@ -9,6 +9,11 @@ export const selectOpening = data => ({
 	payload: data
 })
 
+export const selectClosing = data => ({
+	type: 'SELECT_CLOSING',
+	payload: data
+})
+
 export const selectContinuation = data => ({
 	type: 'SELECT_CONT',
 	payload: data
