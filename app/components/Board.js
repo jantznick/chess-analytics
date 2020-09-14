@@ -15,7 +15,7 @@ class Board extends React.Component {
 		if (typeof window !== 'undefined' && window.document.getElementById('board')) {
 			return (screenWidth - (14.25 * parseFloat(getComputedStyle(document.querySelector('body'))['font-size'])))/2
 		} else {
-			return screenWidth*0.425
+			return screenWidth * 0.425
 		}
 	}
 
@@ -24,7 +24,16 @@ class Board extends React.Component {
 		if (this.props.game.moveNumber == 0) {
 			this.game = new Chess();
 		}
-		this.game.move(this.props.game.moves[this.props.game.moveNumber])
+		let move;
+		(this.props.game.sources ?
+		move = {
+			from: this.props.game.sources[this.props.game.moveNumber],
+			to: this.props.game.targets[this.props.game.moveNumber]
+		}
+		:
+		move = this.props.game.targets[this.props.game.moveNumber]
+		)
+		this.game.move(move)
 		this.props.makeMove({
 			fen: this.game.fen(),
 			moveNumber: this.props.game.moveNumber + 1
@@ -32,29 +41,19 @@ class Board extends React.Component {
 	}
 
 	onDrop = ({ sourceSquare, targetSquare }) => {
-		this.game.move(targetSquare);
-		this.props.makeMove({
-			fen: this.game.fen(),
-			moveNumber: this.props.game.moveNumber + 1
-		})
+		let move = this.game.move({
+			from: sourceSquare,
+			to: targetSquare
+		});
+		if (move !== null) {
+			this.props.makeMove({
+				fen: this.game.fen(),
+				moveNumber: this.props.game.moveNumber + 1,
+				moveTarget: targetSquare,
+				moveSource: sourceSquare
+			})
+		}
 	}
-
-	// onDrop = ({ sourceSquare, targetSquare }) => {
-	// 	// see if the move is legal
-	// 	let move = this.game.move({
-	// 	  from: sourceSquare,
-	// 	  to: targetSquare,
-	// 	  promotion: "q" // always promote to a queen for example simplicity
-	// 	});
-
-	// 	// illegal move
-	// 	if (move === null) return;
-	// 	this.setState(({ history, pieceSquare }) => ({
-	// 	  fen: this.game.fen(),
-	// 	  history: this.game.history({ verbose: true }),
-	// 	  squareStyles: squareStyling({ pieceSquare, history })
-	// 	}));
-	//   };
 
 	previousMove = () => {
 		this.game.undo();

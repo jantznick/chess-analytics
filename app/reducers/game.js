@@ -1,6 +1,8 @@
 const initialState = {
 	fen: "start",
-	moveNumber: 0
+	moveNumber: 0,
+	targets: [],
+	sources: []
 }
 
 const game = (state = initialState, action) => {
@@ -17,9 +19,13 @@ const game = (state = initialState, action) => {
 				type: 'opening',
 				moveNumber: 0,
 				fen: 'start',
-				moves: action.payload.moves.split(' ')
+				targets: action.payload.moves.split(' ')
 			}
 		case 'MAKE_MOVE':
+			let {targets, sources} = state;
+			action.payload.moveTarget && targets.push(action.payload.moveTarget);
+			action.payload.moveSource && sources.push(action.payload.moveSource);
+
 			return {
 				...state,
 				fen: action.payload.fen,
