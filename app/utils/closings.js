@@ -1,4 +1,4 @@
-const closings = [
+export default [
 	{
 		name: 'Ruy Lopez',
 		moves: 'e4 e5 Nf3 Nc6 Bb5',
@@ -34,5 +34,3 @@ const closings = [
 		variations: []
 	}
 ]
-
-export default closings
