@@ -46,6 +46,13 @@ const current = (state = stateModel.board.current, action) => {
 
 const state = (state = stateModel.board.state, action) => {
 	switch (action.type) {
+		case 'SELECT_GAME':
+			return 'game';
+		case 'SELECT_OPENING':
+		case 'MAKE_MOVE':
+			return 'opening';
+		case 'SELECT_CLOSING':
+			return 'endgame';
 		default:
 			return state
 	}
