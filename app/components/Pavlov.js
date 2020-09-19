@@ -71,16 +71,6 @@ class Pavlov extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		game: state.game,
-		games: state.games,
-		playerData: state.playerData,
-		playerStats: state.playerStats,
-		state: state
-	}
-};
-
 const mapDispatchToProps = {selectOpening, selectClosing};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Pavlov)
+export default connect(null, mapDispatchToProps)(Pavlov)

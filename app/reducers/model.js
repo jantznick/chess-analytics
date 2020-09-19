@@ -186,7 +186,7 @@ const stateModel = {
 			fen: "start",
 			moveNumber: 0,
 			sources: [],
-			targets: ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Ba4", "Nf6"]
+			targets: []
 		},
 		state: 'opening' || 'endgame' || 'game'
 	},

@@ -6,6 +6,7 @@ import Chess from 'chess.js'
 import { roughSquare } from '../utils/customRough.js';
 
 import {makeMove} from '../actions';
+import stateModel from '../reducers/model.js';
 
 class Board extends React.Component {
 
@@ -20,23 +21,28 @@ class Board extends React.Component {
 	}
 
 	nextMove = () => {
+		const {
+			board,
+			makeMove
+		} = this.props;
+
 		// Hacky fix to reset 'this.game' from chess.js if user selects new opening mid play
-		if (this.props.game.moveNumber == 0) {
+		if (board.current.moveNumber == 0) {
 			this.game = new Chess();
 		}
 		let move;
-		(this.props.game.sources ?
+		(board.current.sources ?
 		move = {
-			from: this.props.game.sources[this.props.game.moveNumber],
-			to: this.props.game.targets[this.props.game.moveNumber]
+			from: board.current.sources[board.current.moveNumber],
+			to: board.current.targets[board.current.moveNumber]
 		}
 		:
-		move = this.props.game.targets[this.props.game.moveNumber]
+		move = board.current.targets[board.current.moveNumber]
 		)
 		this.game.move(move)
-		this.props.makeMove({
+		makeMove({
 			fen: this.game.fen(),
-			moveNumber: this.props.game.moveNumber + 1
+			moveNumber: board.current.moveNumber + 1
 		})
 	}
 
@@ -48,7 +54,7 @@ class Board extends React.Component {
 		if (move !== null) {
 			this.props.makeMove({
 				fen: this.game.fen(),
-				moveNumber: this.props.game.moveNumber + 1,
+				moveNumber: this.props.board.current.moveNumber + 1,
 				moveTarget: targetSquare,
 				moveSource: sourceSquare
 			})
@@ -59,7 +65,7 @@ class Board extends React.Component {
 		this.game.undo();
 		this.props.makeMove({
 			fen: this.game.fen(),
-			moveNumber: this.props.game.moveNumber - 1
+			moveNumber: this.props.board.current.moveNumber - 1
 		})
 	}
 
@@ -75,7 +81,7 @@ class Board extends React.Component {
 						</div>
 					}
 					<Chessboard
-						position={this.props.game.fen}
+						position={this.props.board.current.fen}
 						calcWidth={this.calcWidth}
 						roughSquare={roughSquare}
 						transitionDuration={200}
@@ -97,11 +103,7 @@ Board.defaultProps = {
 	showProbabilityBar: true
 }
 
-const mapStateToProps = ({game}) => {
-	return ({
-		game
-	})
-};
+const mapStateToProps = ({board}) => ({board});
 
 const mapDispatchToProps = {makeMove};
 
