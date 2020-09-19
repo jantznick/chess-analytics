@@ -4,17 +4,15 @@ import thunk from 'redux-thunk';
 import game from './game';
 import games from './games';
 import opening from './opening';
-import openings from './openings';
-import playerData from './playerData';
-import playerStats from './playerStats';
+import gameState from './gameState';
+import player from './player';
 
 const rootReducer = combineReducers({
 	game,
 	games,
 	opening,
-	openings,
-	playerData,
-	playerStats
+	gameState,
+	player
 });
 
 const store = createStore(

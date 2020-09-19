@@ -71,12 +71,13 @@ class Pavlov extends React.Component {
 	}
 }
 
-const mapStateToProps = ({game, games, playerData, playerStats}) => {
+const mapStateToProps = (state) => {
 	return {
-		game,
-		games,
-		playerData,
-		playerStats
+		game: state.game,
+		games: state.games,
+		playerData: state.playerData,
+		playerStats: state.playerStats,
+		state: state
 	}
 };
 

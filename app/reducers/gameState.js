@@ -1,4 +1,9 @@
-const initialState = []
+import { combineReducers } from 'redux'
+
+const initialState = {
+	opening: [],
+	closing: []
+}
 
 const openings = (state = initialState.opening, action) => {
 	switch (action.type) {
@@ -18,7 +23,7 @@ const closings = (state = initialState.closing, action) => {
 	}
 }
 
-export default {
+export default combineReducers({
 	openings,
 	closings
-}
+})
