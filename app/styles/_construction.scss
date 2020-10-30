@@ -1,0 +1,21 @@
+#page {
+	text-align: center;
+
+	input[type="text"] {
+		width: 100%;
+		font-size: 2em;
+		padding: 10px;
+		border-radius: 10px;
+		background: inherit;
+		border-color: white;
+		border-style: solid;
+		border-width: 3px;
+		box-shadow: 4px 4px #7e7c7c;
+		transition-duration:250ms;
+
+		&:focus {
+			outline: none;
+			border-color: black;
+		}
+	}
+}

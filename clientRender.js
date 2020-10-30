@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './app/routes/index';
 
 hydrate(
-    <BrowserRouter>
-        <Routes />
-    </BrowserRouter>,
-    document.getElementById("root"));
+	<BrowserRouter>
+		<Routes />
+	</BrowserRouter>,
+	document.getElementById("root"));

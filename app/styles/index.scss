@@ -1,12 +1,13 @@
 @mixin flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Lato';
 }
 
 @import 'pavlov';
@@ -19,5 +20,4 @@
 @import 'panel';
 @import 'selection';
 @import 'user';
-
-
+@import 'construction';

@@ -20,6 +20,7 @@ app.get('*', (req,res) => {
                 <title>Chess Analytics</title>
                 <script src="/bundle.js" defer></script>
                 <link href="/styles/style.css" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             </head>
             <body>
