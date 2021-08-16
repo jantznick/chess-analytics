@@ -1,4 +1,4 @@
 # chess-analytics
 Chess Analytics
 
-Analytics for Chess.com games
+Work In Progress Analytics for Chess.com games
